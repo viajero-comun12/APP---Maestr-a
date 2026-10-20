@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: master_prep_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - DEBUG=True
+      - DATABASE_URL=postgresql://prep_user:prep_pass@db:5432/master_prep_db
+      - STORAGE_BACKEND=local
+      - LOCAL_UPLOAD_DIR=/app/uploads
+      - SECRET_KEY=super-secret-key-change-this-in-production-use-strong-hash
+    volumes:
+      - ./uploads:/app/uploads
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: master_prep_postgres
+    environment:
+      POSTGRES_USER: prep_user
+      POSTGRES_PASSWORD: prep_pass
+      POSTGRES_DB: master_prep_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

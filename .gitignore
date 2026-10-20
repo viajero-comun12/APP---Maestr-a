@@ -1,0 +1,40 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+*/venv/
+*/env/
+backend/venv/
+
+# Secrets and environment configurations
+.env
+*/.env
+backend/.env
+
+# Local database files
+*.db
+*.sqlite3
+backend/*.db
+backend/*.sqlite3
+
+# Uploads and temporary generated reports
+uploads/
+*/uploads/*
+!*/uploads/.gitkeep
+reports_output/
+*/reports_output/
+
+# IDE and OS metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
